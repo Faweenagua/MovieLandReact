@@ -23,15 +23,15 @@ export default function App() {
   const searchMovies = async (title) => {
     const response = await fetch(`${API_URL}&s=${title}`);
     const data = await response.json();
-    setMovies = data.Search;
+    setMovies(data.Search);
 
-    console.log(data.Search);
+    //console.log(movies);
   };
 
   useEffect(() => {
     searchMovies("Bean");
   }, []);
-  console.log(movie1.Year);
+  //console.log(movie1.Year);
   return (
     <div className="app">
       <h1>MovieLand</h1>
@@ -47,7 +47,9 @@ export default function App() {
 
       {movies?.length > 0 ? (
         <div className="container">
-          <MovieCard movie1={movies[1]} />
+          {movies.map((movie) => (
+            <MovieCard movie1={movie} />
+          ))}
         </div>
       ) : (
         <div className="empty">
