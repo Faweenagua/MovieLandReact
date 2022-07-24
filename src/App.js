@@ -19,6 +19,7 @@ let movie1 = {
 
 export default function App() {
   let [movies, setMovies] = useState([]);
+  let [searchTerm, setsearchTerm] = useState("");
 
   const searchMovies = async (title) => {
     const response = await fetch(`${API_URL}&s=${title}`);
@@ -39,10 +40,14 @@ export default function App() {
       <div className="search">
         <input
           placeholder="Search for a movie"
-          value="Bean"
-          onChange={() => {}}
+          value={searchTerm}
+          onChange={(e) => setsearchTerm(e.target.value)}
         />
-        <img src={SearchIcon} alt="search" onClick={() => {}} />
+        <img
+          src={SearchIcon}
+          alt="search"
+          onClick={() => searchMovies(searchTerm)}
+        />
       </div>
 
       {movies?.length > 0 ? (
